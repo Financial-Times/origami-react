@@ -1,2 +1,11 @@
+$o-buttons-is-silent: false;
+$o-colors-is-silent: false;
+$o-table-is-silent: false;
+
 @import 'o-colors/main';
 @import 'o-buttons/main';
+@import 'o-table/main';
+
+.intro {
+  background-color: red;
+}

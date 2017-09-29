@@ -1,8 +1,9 @@
 {
-  "name": "",
+  "name": "react-origami",
   "private": true,
   "dependencies": {
     "o-colors": "^4.1.1",
-    "o-buttons": "^5.3.1"
+    "o-buttons": "^5.3.1",
+    "o-table": "^6.2.1"
   }
 }

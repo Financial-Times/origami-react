@@ -1,5 +1,6 @@
 const path = require('path');
 
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -12,12 +13,22 @@ module.exports = {
     filename: 'index_bundle.js'
   },
   module: {
-    loaders: [
-      { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-      { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
+    rules: [
+      { test: /\.js$/, use: 'babel-loader', exclude: /(node_modules|bower_components)/ },
+      { test: /\.jsx$/, use: 'babel-loader', exclude: /(node_modules|bower_components)/ },
+      { test: /\.scss/,
+        use: ExtractTextPlugin.extract({
+          use: [ { loader: 'css-loader', options: { sourceMap: true } },
+                { loader: 'sass-loader', options: { sourceMap: true, includePaths: ['bower_components'] }}
+          ]
+        }),
+      }
     ]
   },
   plugins: [
+    new ExtractTextPlugin({
+      filename: 'styles.css'
+    }),
     new HtmlWebpackPlugin({
       template: './client/index.html',
       filename: 'index.html',
