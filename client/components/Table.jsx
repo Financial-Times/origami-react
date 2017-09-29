@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import OTable from 'o-table';
 
 class Table extends React.Component {
 
@@ -7,12 +8,17 @@ class Table extends React.Component {
     super(props);
   }
 
+  componentDidMount(){
+    OTable.init(this.table);
+  }
+
   render() {
     return (
-      <div>
-        <table className="o-table" data-o-component="o-table">
+        <table className="o-table" data-o-component="o-table" ref={(table) => { this.table = table; }}>
           <thead>
-            <tr><td>Cheese <span className="o-table__cell--content-secondary">Type of cheese</span></td></tr>
+            <tr>
+              <th>Cheese <span className="o-table__cell--content-secondary">Type of cheese</span></th>
+            </tr>
           </thead>
           <tbody>
             <tr>
@@ -26,7 +32,6 @@ class Table extends React.Component {
             </tr>
           </tbody>
         </table>
-      </div>
     );
   }
 };
