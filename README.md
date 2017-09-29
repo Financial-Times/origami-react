@@ -6,11 +6,12 @@
 
 ## Method 1: Custom Webpack
 This method assumes a knowledge of React and basic knowledge of Webpack, if you'd rather not deal
-with Webpack and Bower, skip to Method 2, using the Origami Build Tools as a nice convenient layer over
+with Webpack and Bower, skip to Method 2, using the Origami Build Tools as a convenient layer over
 Webpack and Bower.
 
-1. Set up a React project with Webpack. Follow a tutorial on this or reuse code in this repo.
-NB: you cannot use a scaffold like Create React App here, because you need to edit the `webpack.config.js` file, and Create React App won’t (easily) let you do that.
+1. Set up a React project with Webpack. You can reuse code in this repo if it covers your use case.
+
+_NB:_ you cannot use a scaffold like Create React App here, because you need to edit the `webpack.config.js` file, and Create React App won’t (easily) let you do that.
 
 2. Add bower as a dependency: `npm i bower --save-dev`
 
@@ -41,10 +42,10 @@ NB: you cannot use a scaffold like Create React App here, because you need to ed
 }
 ```
 
-5. For the Webpack config, you can copy all of the file above or simply use the `resolve` property on `module.exports` AND add `BowerResolvePlugin`.
-Install it as a dependency `npm i bower-resolve-webpack-plugin` and require it at the top of your Webpack config file: `const BowerResolvePlugin = require('bower-resolve-webpack-plugin');`
+5. For the Webpack config, you can copy all of webpack.config.js here or simply copy over the `resolve` property on `module.exports` AND add `BowerResolvePlugin`.
+Install it as a dependency `npm i bower-resolve-webpack-plugin` and require it at the top of your Webpack config file: `const BowerResolvePlugin = require('bower-resolve-webpack-plugin')`
 
-6. To add the Origami styles, create a file like `client/styles.scss`, import the o-files you need and set is-silent to false. For example:
+6. To add the Origami styles, create a file like `client/styles.scss`, import the Origami components you need and set is-silent to false. For example:
 ```
 $o-buttons-is-silent: false;
 $o-colors-is-silent: false;
@@ -55,13 +56,16 @@ $o-table-is-silent: false;
 @import 'o-table/main';
 ```
 
-7. Import the styles in your entry file `index.js`: add `import './styles.scss'` (paying attention to what the file path should be).
+7. Import the styles in your entry file: for example add `import './styles.scss'` to `index.js` (paying attention to what the file path should be).
 
-8. To add the Origami javascript, create a react component that will contain it. Something like what's in this file: `client/components/Table.jsx`.
+8. To add the Origami javascript, create a React component that will contain it. Something like what's in the [Table component](https://github.com/Financial-Times/origami-react/blob/master/client/components/Table.jsx).
 
-9. In the render method of your new component, add the Origami HTML (remembering to change `class` to `className` and that React components need to have a single element as the parent).
+9. In the render method of your new component, add the Origami HTML converting it to JSX (remembering to change `class` to `className` and that JSX components need to have a single element as the parent).
 
-10. Import the javascript for the Origami Component you want into your React component. This import syntax should work: `import OTable from 'o-table'` - swapping in the component and function names you want.
+10. Import the javascript for the Origami component in your new React file. This import syntax should work:
+```
+import OTable from 'o-table'
+```
 
 11. In the render method, add a `ref` attribute to the element you want to attach the javascript to. For example for o-table, this will be the parent `<table>` element. The ref attribute takes a callback function which is given a reference to a DOM Element as its argument. It lets you access the actual DOM. Better explained in the [React Documentation](https://facebook.github.io/react/docs/refs-and-the-dom.html).
 ```
@@ -79,18 +83,19 @@ componentDidMount(){
 
 It should now work. :pray:
 
-GOTCHAS:
+_GOTCHAS:_
 Make sure you add the ref attribute to a jsx element, not a React component containing the JSX element.
 
 ## Method 2: With Origami Build Tools
 
-Hopefully just pick this up from step 6.
+The [Origami Build Tools](http://origami.ft.com/docs/developer-guide/modules/building-modules/) installs Bower and Webpack under the hood, meaning you don't need to write all the configuration for these two tools yourself.
 
-In package.json
+Do amend package.json to run the OBT commands:
   ```
   "scripts": {
     "start": "obt build  --watch --runServer",
     "build": "obt build index.js",
   }
   ```
-The Origami Build Tools installs bower and webpack under the hood, meaning you don't need to write all the webpack and bower configuration yourself.
+
+And then... hopefully just pick this up from step 6.
