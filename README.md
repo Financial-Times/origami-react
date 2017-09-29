@@ -30,7 +30,7 @@ NB: you cannot use a scaffold like Create React App here, because you need to ed
   "directory": "bower_components",
   "registry": {
     "search": [
-      "http://registry.origami.ft.com",
+      "https://origami-bower-registry.ft.com",
       "https://bower.herokuapp.com"
     ]
   }
