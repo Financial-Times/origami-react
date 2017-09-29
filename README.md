@@ -1,5 +1,9 @@
 # Using Origami with React:
 
+## To run
+
+`npm run start`
+
 ## Method 1: Custom Webpack
 This method assumes a knowledge of React and basic knowledge of Webpack, if you'd rather not deal
 with Webpack and Bower, skip to Method 2, using the Origami Build Tools as a nice convenient layer over
