@@ -1,9 +1,11 @@
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BowerResolvePlugin = require('bower-resolve-webpack-plugin');
+const path = require('path');
 
 module.exports = {
   entry: './client/index.js',
+  watch: true,
   resolve: {
 		// This will handle a bower.json's `main` property being an array.
 		plugins: [new BowerResolvePlugin()],

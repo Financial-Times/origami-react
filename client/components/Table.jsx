@@ -4,8 +4,8 @@ import OTable from 'o-table';
 
 class Table extends React.Component {
 
-  constructor(props) {
-    super(props);
+  shouldComponentUpdate() {
+    return true;
   }
 
   componentDidMount(){
@@ -14,26 +14,26 @@ class Table extends React.Component {
 
   render() {
     return (
-        <table className="o-table" data-o-component="o-table" ref={(table) => { this.table = table; }}>
+      <table className="o-table o-table--responsive-scroll o-table--row-stripes" data-o-component="o-table" ref={(table) => { this.table = table; }}>
           <thead>
             <tr>
-              <th>Cheese <span className="o-table__cell--content-secondary">Type of cheese</span></th>
+            {this.props.headings.map((heading, index) =>
+              <th data-o-table-data-type="numeric" key={`${heading}${index}`}>{heading}</th>
+            )}
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>cheddar</td>
-            </tr>
-            <tr>
-              <td>stilton</td>
-            </tr>
-            <tr>
-              <td>red leicester</td>
-            </tr>
+            {Object.values(this.props.rows).map((row, index) =>
+            <tr key={`${row}${index}`}>
+              {row.map((rowItem, rowItemIndex) => {
+                return (<td key={`${rowItem}${rowItemIndex}`}>{rowItem}</td>)
+                })}
+              </tr>
+            )}
           </tbody>
         </table>
     );
   }
 };
 
-export {Table};
+export { Table };
