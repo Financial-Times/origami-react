@@ -3,11 +3,6 @@ import ReactDOM from "react-dom";
 import OTable from 'o-table';
 
 class Table extends React.Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount(){
     OTable.init(this.table);
   }
