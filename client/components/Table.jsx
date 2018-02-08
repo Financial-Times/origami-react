@@ -9,7 +9,11 @@ class Table extends React.Component {
   }
 
   componentDidMount(){
-    OTable.init(this.table);
+    this.oTable = OTable.init(this.table);
+  }
+  
+  componentWillUnmount() {
+    this.oTable.destroy();
   }
 
   render() {
