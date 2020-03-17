@@ -1,3 +1,5 @@
+:warning: This project is unmaintained. If you're looking for a good example of Origami being used with React, have a look at the setup in [spark-lists](https://github.com/Financial-Times/spark-lists/tree/8eb8f61c84aaf9328ae7fad4e85c832b6bd63151/src/client/components/Origami#origami-react-components) :warning: 
+
 # Using Origami with React:
 
 ## To run
